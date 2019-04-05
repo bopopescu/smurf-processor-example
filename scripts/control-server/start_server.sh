@@ -246,4 +246,4 @@ fi
 
 echo "Starting server..."
 cd /data/smurf-processor_config/
-/usr/local/src/smurf-processor/scripts/control-server/python/pyrogue_server.py  ${args}
+/usr/local/src/smurf-processor-example/scripts/control-server/python/pyrogue_server.py  ${args}
