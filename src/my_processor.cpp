@@ -18,6 +18,7 @@ public:
       {
         bp::class_<MyProcessor, boost::shared_ptr<MyProcessor>, bp::bases<ris::Slave>, boost::noncopyable >("MyProcessor",bp::init<>())
           .def("printTransmitStatistic", &MyProcessor::printTransmitStatistic)
+          .def("setDebug",  &MyProcessor::setDebug)
         ;
 
         bp::implicitly_convertible<boost::shared_ptr<MyProcessor>, ris::SlavePtr>();
