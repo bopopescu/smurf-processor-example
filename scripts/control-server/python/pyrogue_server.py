@@ -29,7 +29,7 @@ from pathlib import Path
 import pyrogue
 import pyrogue.utilities.fileio
 import rogue.interfaces.stream
-import Smurf
+import MyModule
 
 import gc
 gc.disable()
@@ -259,12 +259,12 @@ class LocalServer(pyrogue.Root):
 
             # Our receiver
             data_fifo = rogue.interfaces.stream.Fifo(1000,0,1)    # new
-            self.smurf_processor = Smurf.SmurfProcessor()
-            self.smurf_processor.setDebug( False )
+            self.my_processor = MyModule.MyProcessor()
+            self.my_processor.setDebug( False )
             #pyrogue.streamConnect(base.FpgaTopLevel.stream.application(0xC1), data_fifo) # new
             #pyrogue.streamConnect(base.FpgaTopLevel.stream.Application(0xC1), data_fifo) # new
             pyrogue.streamConnect(fpga.stream.application(0xC1), data_fifo)
-            pyrogue.streamConnect(data_fifo, self.smurf_processor)
+            pyrogue.streamConnect(data_fifo, self.my_processor)
             #pyrogue.streamTap(fpga.stream.application(0xC1), rx)
 
             # Run control for streaming interfaces
@@ -380,7 +380,7 @@ class LocalServer(pyrogue.Root):
                 description='Enable smurf processor transmit debug',
                 mode='RW',
                 value=False,
-                localSet=lambda value: self.smurf_processor.setDebug(value),
+                localSet=lambda value: self.my_processor.setDebug(value),
                 hidden=False))
 
 
