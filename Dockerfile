@@ -8,3 +8,4 @@ WORKDIR build
 RUN cmake .. && make
 WORKDIR ..
 ENV PYTHONPATH /usr/local/src/smurf-processor-example/lib:${PYTHONPATH}
+ENV PATH /usr/local/src/smurf-processor-example/scripts/control-server:${PATH}
