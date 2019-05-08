@@ -1,4 +1,4 @@
-FROM tidair/smurf-processor-base:R0.0.1
+FROM tidair/smurf-processor-base:R1.0.0
 
 WORKDIR /usr/local/src
 RUN git clone https://github.com/jesusvasquez333/smurf-processor-example.git
