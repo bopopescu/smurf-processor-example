@@ -5,13 +5,34 @@ namespace bp = boost::python;
 class MyProcessor : public SmurfProcessor
 {
 public:
-    void transmit(smurf_tx_data_t* data)
+    void transmit(SmurfPacket_RO sp)
     {
-        printf("   :::  My custom processor  :::   \n");
-        printf("SMuRF hearder received:\n");
-        for (int i = 0; i < smurfheaderlength; ++i)
-          printf(" - byte[%03d] = 0x%02x\n", i, data[i]);
-        printf("\n");
+      std::cout << "=====================================" << std::endl;
+      std::cout << "Packet received" << std::endl;
+      std::cout << "=====================================" << std::endl;
+      std::cout << std::endl;
+      std::cout << "-----------------------" << std::endl;
+      std::cout << " HEADER:" << std::endl;
+      std::cout << "-----------------------" << std::endl;
+      std::cout << "Version            = " << unsigned(sp->getVersion()) << std::endl;
+      std::cout << "Crate ID           = " << unsigned(sp->getCrateID()) << std::endl;
+      std::cout << "Slot number        = " << unsigned(sp->getSlotNumber()) << std::endl;
+      std::cout << "Number of channels = " << unsigned(sp->getNumberChannels()) << std::endl;
+      std::cout << "Unix time          = " << unsigned(sp->getUnixTime()) << std::endl;
+      std::cout << "Counter 0          = " << unsigned(sp->getCounter0()) << std::endl;
+      std::cout << "Counter 1          = " << unsigned(sp->getCounter1()) << std::endl;
+      std::cout << "Counter 2          = " << unsigned(sp->getCounter2()) << std::endl;
+      std::cout << "Frame counter      = " << unsigned(sp->getFrameCounter()) << std::endl;
+      std::cout << "-----------------------" << std::endl;
+      std::cout << std::endl;
+      std::cout << "-----------------------" << std::endl;
+      std::cout << " DATA (first 20 points):" << std::endl;
+      std::cout << "-----------------------" << std::endl;
+      for (std::size_t i(0); i < 20; ++i)
+         std::cout << "Data[" << i << "] = " << sp->getValue(i) << std::endl;
+      std::cout << "-----------------------" << std::endl;
+      std::cout << std::endl;
+      std::cout << "=====================================" << std::endl;
     };
 
     static void setup_python()
